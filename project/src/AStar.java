@@ -8,11 +8,9 @@ public class AStar {
     private int nodeCount;
 
     public AStar(int[] initial, Heuristic h) {
-        frontire = new PriorityQueue<Node>(8, new Comparator<>() {
-            @Override
-            public int compare(Node o1, Node o2) {
-                return o1.f > o2.f ? 1 : -1;
-            }
+        frontire = new PriorityQueue<Node>(20, (Node o1, Node o2) -> {
+            return o1.f > o2.f ? 1 : -1;
+
         });
         game = new EightPuzzle(initial, h);
         Node initialNode = new Node(game.initialState(), null, null);
